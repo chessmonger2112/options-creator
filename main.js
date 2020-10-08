@@ -101,8 +101,45 @@ function getFunctionValue(regionalFunctions, domain) {
   return functionValue;
 }
 
+function getAllFunctionValues(regionalFunctions, domains) {
+  var allFunctionValues = [];
+
+  domains.forEach(function(domain) {
+    var functionValue = getFunctionValue(regionalFunctions, domain);
+    allFunctionValues.push(functionValue);
+  });
+
+  return allFunctionValues;
+}
+
+function displayResultsToDom(functionValues) {
+  functionValues.forEach(function(functionValue) {
+    var tr = getTrFromFunctionValue(functionValue);
+    var results = document.getElementById("results");
+    results.appendChild(tr);
+  });
+}
+
+function getTrFromFunctionValue(functionValue) {
+  var tds = functionValue.map(function(subFunctionValue) {
+    var newTd = html("td");
+    newTd.innerText = subFunctionValue;
+    return newTd
+  });
+
+  var tr = html("tr");
+  tds.forEach(function(td){
+    tr.appendChild(td);
+  })
+
+  return tr;
+}
+
+function html(elementType) {
+  var newElement  = document.createElement(elementType);
+  return newElement;
+}
 
 var validDomainSets = getValidSolutions();
-
-var domain1 = validDomainSets[0];
-
+var functionValues = getAllFunctionValues(regionalFunctions, validDomainSets);
+displayResultsToDom(functionValues);

@@ -1,13 +1,31 @@
+p {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width:74%;
+  margin-left:13%;
+  margin-right:13%;
 }
 
 td, th {
   border: 1px solid #dddddd;
-  text-align: left;
+  text-align: center;
   padding: 8px;
+}
+
+th {
+  font-weight: 549;
+  font-size: 15px;
+}
+
+td {
+  font-size: 14px;
 }
 
 tr:nth-child(even) {
