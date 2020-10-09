@@ -5,7 +5,12 @@
     <title>Options creator</title>
   </head>
   <body>
-    <p>The results of all function values when the domain satisfy the condition that each sub function value won't change within its region</p>
+
+    <p id="intro">Option values normally depend on the final value, but can be independent of the final value within range in combination with one or more options.</p>
+    <p>The point of this page is to numerically test all options combinations with four different strikes to see if there is one that has different regional function values within a function value.</p>
+
+
+    <p id="results-preface">The results of all function values when the domain satisfy the condition that each sub function value won't change within its region</p>
 
     <table>
       <thead>
@@ -15,11 +20,13 @@
           <th>Regional Value 3</th>
           <th>Regional Value 4</th>
           <th>Regional Value 5</th>
+          <th>All values equal?</th>
         </tr>
       </thead>
       <tbody id="results">
       </tbody>
     </table>
+    <p>For each function value, where all subvalues equal for the given inputs? <span id="equal-results"></span></p>
     <script src="./main.js"></script>
   </body>
 </html>

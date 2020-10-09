@@ -1,16 +1,37 @@
-p {
-  text-align: center;
-  font-size: 18px;
+:root {
+  --table-width: 74%;
+  --combined-margin: calc(100% - var(--table-width));
+  --side-margin: calc(var(--combined-margin) / 2);
+}
+
+#intro {
+  margin-top: 100px;
+}
+
+#intro + p {
+  margin-top: 20px;
+}
+
+#results-preface {
   margin-top: 100px;
   margin-bottom: 50px;
+  text-align: center;
+}
+
+p {
+  margin-left: var(--side-margin);
+  margin-right: var(--side-margin);
+  font-size: 15px;
+  font-family: raleway;
+  line-height: 1.4;
 }
 
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width:74%;
-  margin-left:13%;
-  margin-right:13%;
+  width: var(--table-width);
+  margin-left: var(--side-margin);
+  margin-right: var(--side-margin);
 }
 
 td, th {

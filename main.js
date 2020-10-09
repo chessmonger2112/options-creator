@@ -64,10 +64,10 @@ var regionalFunction4 = {
 };
 
 var regionalFunction5 = {
-  a: 1,
-  c: 2,
-  e: 3,
-  h: 1
+  a: -4,
+  c: -3,
+  e: -2,
+  g: -1
 };
 
 var regionalFunctions = [
@@ -120,6 +120,35 @@ function displayResultsToDom(functionValues) {
   });
 }
 
+function checkIfAllEqual(arr) {
+  var arrLength = arr.length;
+  for (var index = 0; index < arrLength - 1; index ++) {
+    var current = arr[index];
+    var next = arr[index + 1];
+    var same = current === next;
+    if (same === false) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function testCheckIfAllEqual() {
+  var testArr1 = [1, 1, 1];
+  var testArr2 = [1, 1, 1 ,1];
+  var testArr3 = [1, 2, 3];
+  var testArr4 = [1, 2, 3, 3];
+  var result1 = checkIfAllEqual(testArr1);
+  var result2 = checkIfAllEqual(testArr2);
+  var result3 = checkIfAllEqual(testArr3);
+  var result4 = checkIfAllEqual(testArr4);
+
+  var allPassed = result1 === result2 === result3 === result4;
+  console.log("testCheckIfAllEqual: ", allPassed);
+}
+
+testCheckIfAllEqual();
+
 function getTrFromFunctionValue(functionValue) {
   var tds = functionValue.map(function(subFunctionValue) {
     var newTd = html("td");
@@ -130,9 +159,38 @@ function getTrFromFunctionValue(functionValue) {
   var tr = html("tr");
   tds.forEach(function(td){
     tr.appendChild(td);
-  })
+  });
+
+  var allEqualTd = html("td");
+  var allEqual = checkIfAllEqual(functionValue);
+  allEqualTd.innerText = allEqual;
+  tr.appendChild(allEqualTd);
 
   return tr;
+}
+
+function getAllFunctionValuesEqual(functionValues) {
+  var allEquals = functionValues.map(checkIfAllEqual);
+  return allEquals;
+}
+
+function allValuesTrue(arr) {
+  var all = arr.every(function(bool) {
+    bool === true;
+    return bool;
+  });
+  return all;
+}
+
+function calculateAndDisplayAllFunctionsValueEquality(functionValues) {
+  var allFunctionValuesEqual = getAllFunctionValuesEqual(functionValues);
+  var allAllFunctionValuesEqual = allValuesTrue(allFunctionValuesEqual);
+  return allAllFunctionValuesEqual;
+}
+
+function displayEqualityToDom(allAllFunctionValuesEqual) {
+  var equalResultsElement = document.getElementById("equal-results");
+  equalResultsElement.innerText = allAllFunctionValuesEqual;
 }
 
 function html(elementType) {
@@ -142,4 +200,12 @@ function html(elementType) {
 
 var validDomainSets = getValidSolutions();
 var functionValues = getAllFunctionValues(regionalFunctions, validDomainSets);
+var allAllFunctionValuesEqual = calculateAndDisplayAllFunctionsValueEquality(functionValues);
 displayResultsToDom(functionValues);
+displayEqualityToDom(allAllFunctionValuesEqual);
+
+
+
+
+
+
